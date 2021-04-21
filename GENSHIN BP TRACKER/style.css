@@ -13,17 +13,20 @@
 body {
   background: url("./mountain-bg.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100vh;
   overflow-x: hidden;
   margin: 0;
 }
 
-.title {
-  /* position: fixed; */
+.mainHeader {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -31,15 +34,16 @@ body {
   padding: 10px 30px;
   height: 5.5rem;
   color: var(--primary-color);
+  z-index: 3;
 }
 
-.title h1 {
+.mainHeader h1 {
   letter-spacing: 0.1rem;
   position: absolute;
   left: 15px;
 }
 
-.title h2 {
+.mainHeader h2 {
   font-size: 14px;
   letter-spacing: 0.1rem;
   position: absolute;
@@ -47,7 +51,122 @@ body {
   left: 15px;
 }
 
-.stats {
+.bpSettings {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(-50%);
+  padding: 5px;
+  height: 100%;
+}
+
+.bpSettings input {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 5px 5px;
+  width: 5rem;
+  display: inline-block;
+}
+
+.bepCounter {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  background: url("./Item_Battle_Pass_EXP.png"),
+    linear-gradient(to bottom, rgb(112, 137, 168) 0%, rgb(104, 162, 194) 50%);
+  background-size: cover;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.bepCounter .bepText {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 1.2rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.missionsContainer {
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab {
+  margin: 0;
+  padding: 0;
+}
+
+.missionList {
+  max-height: 0;
+  overflow: display;
+  transition: max-height 0.6s ease-in;
+  visibility: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  /* border: 1px solid rgb(193, 165, 134); */
+  background-color: rgb(235, 226, 216);
+  max-width: 810px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab.active .missionList {
+  max-height: 100%;
+  height: auto;
+  visibility: visible;
+}
+
+.missionList li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgb(235, 226, 216);
+  max-width: 800px;
+  width: calc(100vw - 40px);
+  margin: 5px 20px;
+  padding: 5px;
+  border-radius: 1px;
+  left: 0;
+  border: 1px solid rgb(193, 165, 134);
+  font-size: 1.5rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.missionList li:hover {
+  /* border: 1px solid var(--primary-color); */
+  background-color: rgb(247, 242, 232);
+  transform: scale(1.02);
+}
+
+.missionList li small {
+  margin-left: 5px;
+  font-weight: bold;
+  color: darkslategray;
+}
+
+/* .stats {
+  visibility: visible;
   width: 95vw;
   height: 140px;
   display: flex;
@@ -55,6 +174,8 @@ body {
   justify-content: flex-start;
   background-color: var(--secondary-color);
   border: solid 1px var(--primary-color);
+  position: fixed;
+  top: 5.5rem;
 }
 
 .form-control {
@@ -103,92 +224,4 @@ body {
 #curBEP:hover,
 #curBEP:focus {
   padding: 0 0.5rem;
-}
-
-.bepCounter {
-  height: 60px;
-  width: 60px;
-  position: relative;
-  background: url("./Item_Battle_Pass_EXP.png"),
-    linear-gradient(to bottom, rgb(112, 137, 168) 0%, rgb(104, 162, 194) 50%);
-  background-size: cover;
-  z-index: 2;
-  border-radius: 5px;
-}
-
-.bepCounter .bepText {
-  position: absolute;
-  text-align: center;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 1.2rem;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.missionsContainer {
-  width: 100vw;
-  padding: 0;
-  margin: 0;
-}
-
-.tab {
-  margin: 0;
-  padding: 0;
-}
-
-.missionList {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.6s ease-in;
-  visibility: hidden;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  /* border: 1px solid rgb(193, 165, 134); */
-  background-color: rgb(235, 226, 216);
-  max-width: 1000px;
-}
-
-.tab.active .missionList {
-  max-height: 100%;
-  height: auto;
-  visibility: visible;
-}
-
-.missionList li {
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: rgb(235, 226, 216);
-  max-width: 800px;
-  width: calc(100vw-40px);
-  margin: 5px 20px;
-  padding: 5px;
-  border-radius: 1px;
-  left: 0;
-  border: 1px solid rgb(193, 165, 134);
-  font-size: 1.5rem;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-}
-
-.missionList li:hover {
-  /* border: 1px solid var(--primary-color); */
-  background-color: rgb(247, 242, 232);
-  transform: scale(1.02);
-}
-
-.missionList li small {
-  margin-left: 5px;
-  font-weight: bold;
-  color: darkslategray;
-}
+} */
