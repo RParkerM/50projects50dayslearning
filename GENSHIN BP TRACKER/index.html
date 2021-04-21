@@ -14,6 +14,8 @@
         <h1>BattlePass EP Planner</h1>
       </div>
       <div class="bpSettings">
+        <label for="curLvl">Current Level</label>
+
         <input
           type="number"
           name="curLvl"
@@ -22,7 +24,7 @@
           min="1"
           max="50"
         />
-        <label for="curLvl">Current Level</label>
+        <label for="curBp">BEP to next level</label>
         <input
           type="number"
           name="curBp"
@@ -31,26 +33,14 @@
           min="0"
           max="999"
         />
-        <label for="curBp">BEP to next level</label>
+        <div class="bepCounter" id="goalBP">
+          <div class="bepText">50000</div>
+        </div>
+        <h3 class="toGoalLevel">to Goal</h3>
       </div>
     </div>
 
     <div class="main">
-      <div class="stats">
-        <div class="form-control">
-          <input type="number" id="bpLevel" value="1" max="50" min="1" />
-          <label>BP Level</label>
-        </div>
-        <div class="form-control">
-          <input type="number" id="curBEP" value="0" max="999" min="0" />
-          <label>Current BEP</label>
-        </div>
-        <p>/ 1000</p>
-        <!-- <p>Missions completed for today</p>
-        <div class="form-control">
-          <input type="checkbox" id="completedToday" />
-        </div> -->
-      </div>
       <div class="missionsContainer">
         <div class="tab active" id="dailyMissions">
           <h1>Daily Missions</h1>

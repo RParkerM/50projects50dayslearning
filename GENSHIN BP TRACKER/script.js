@@ -1,12 +1,24 @@
-const curBEPEl = document.getElementById("curBEP");
-const curLvlEl = document.getElementById("bpLevel");
+const curBEPEl = document.getElementById("curBp");
+const curLvlEl = document.getElementById("curLvl");
 const dailyMissionList = document.querySelector("#dailyMissions .missionList");
 const weeklyMissionList = document.querySelector(
   "#weeklyMissions .missionList"
 );
+const goalBEPEl = document.querySelector("#goalBP .bepText");
 
 curBEPEl.addEventListener("change", bindInputWithinRange);
 curLvlEl.addEventListener("change", bindInputWithinRange);
+curBEPEl.addEventListener("change", updateGoalBep);
+curLvlEl.addEventListener("change", updateGoalBep);
+
+function updateGoalBep() {
+  let curLvl = curLvlEl.value;
+  let curBEP = curBEPEl.value;
+
+  let bpRemaining = (50 - curLvl) * 1000 - curBEP;
+
+  goalBEPEl.innerHTML = Math.max(0, bpRemaining);
+}
 
 const dailyMissions = [
   ["Log in", 120],
