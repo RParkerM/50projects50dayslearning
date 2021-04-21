@@ -5,11 +5,18 @@ const weeklyMissionList = document.querySelector(
   "#weeklyMissions .missionList"
 );
 const goalBEPEl = document.querySelector("#goalBP .bepText");
+const tabs = document.querySelectorAll(".tab");
 
 curBEPEl.addEventListener("change", bindInputWithinRange);
 curLvlEl.addEventListener("change", bindInputWithinRange);
 curBEPEl.addEventListener("change", updateGoalBep);
 curLvlEl.addEventListener("change", updateGoalBep);
+
+console.log(tabs);
+
+tabs.forEach((tab) =>
+  tab.addEventListener("click", () => tab.classList.toggle("active"))
+);
 
 function updateGoalBep() {
   let curLvl = curLvlEl.value;
