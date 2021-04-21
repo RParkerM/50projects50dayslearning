@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> -->
+    <link rel="stylesheet" href="style.css" />
+    <title>Genshin Impact BP Planner</title>
+  </head>
+  <body>
+    <div class="title">
+      <h2>Genshin Impact</h2>
+      <h1>BattlePass EP Planner</h1>
+    </div>
+    <div class="main">
+      <div class="stats">
+        <div class="form-control">
+          <input type="number" id="bpLevel" value="1" max="50" min="1" />
+          <label>BP Level</label>
+        </div>
+        <div class="form-control">
+          <input type="number" id="curBEP" value="0" max="999" min="0" />
+          <label>Current BEP</label>
+        </div>
+        <p>/ 1000</p>
+        <!-- <p>Missions completed for today</p>
+        <div class="form-control">
+          <input type="checkbox" id="completedToday" />
+        </div> -->
+      </div>
+      <div class="missionsContainer">
+        <div class="tab active" id="dailyMissions">
+          <h1>Daily Missions</h1>
+          <ul class="missionList">
+            <li>
+              <small>Test Mission</small>
+              <div class="bepCounter"><div class="bepText">225</div></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tab active" id="weeklyMissions">
+          <h1>Weekly Missions</h1>
+          <ul class="missionList">
+            <li>
+              <small>Test Mission</small>
+              <div class="bepCounter">225</div>
+            </li>
+            <li><small>Test Mission</small></li>
+            <li><small>Test Mission</small></li>
+            <li><small>Test Mission</small></li>
+            <li><small>Test Mission</small></li>
+            <li><small>Test Mission</small></li>
+          </ul>
+        </div>
+
+        <div class="tab" id="periodMissions">
+          <h1>This BP Period</h1>
+          <ul class="missionList">
+            <li><small>Test Mission</small></li>
+            <li><small>Test Mission</small></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

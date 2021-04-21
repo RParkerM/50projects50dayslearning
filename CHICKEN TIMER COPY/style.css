@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --filet-color: #004f71;
+  --bfast-color: rgb(23, 162, 184);
+  --spicy-bfast-color: #fa9370;
+  --spicy-color: #dd0031;
+  --nuggets-color: #f8c1b8;
+  --strips-color: #249e6b;
+  --spicy-strips-color: #994878;
+  --expired-color: #dd0031;
+  --monitor-color: #fa9370;
+  --temp-color: #249e6b;
+}
+
+body {
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  /* align-items: initial; */
+  /* justify-content: center; */
+  flex-direction: column;
+  font-family: "Muli", sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  height: 100%;
+  width: 100vw;
+}
+
+.navHeader {
+  width: 100vw;
+  height: 50px;
+  background-color: #d5d5d5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  border-bottom: 1px solid #ababab;
+}
+
+.titleLabel {
+  margin: 5px 10px;
+}
+
+/* .logo {
+  background: url("https://pics.freeicons.io/uploads/icons/png/19257995451579606322-64.png");
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  margin: 0;
+} */
+
+.navHeader .storeNum {
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  margin: 0px 5px;
+  font-family: inherit;
+}
+
+.navHeader .navButtons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.navHeader button {
+  cursor: pointer;
+  border: 0;
+  font-size: 1.5rem;
+  margin: 0px 3px;
+  background-color: transparent;
+}
+
+.navHeader button:focus {
+  outline: 0;
+}
+
+.navHeader button:active {
+  transform: scale(0.98);
+}
+
+.header {
+  height: 50px;
+  width: 100vw;
+  margin: 0;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-bottom: 1px solid #ababab;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+}
+
+.timerLabel {
+  height: 70px;
+  width: 100vw;
+  margin: 0;
+  padding: 5px 10px;
+  font-size: 2rem;
+  border-bottom: 1px solid #ababab;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  text-transform: uppercase;
+}
+
+.timerLabel:nth-of-type(even) {
+  background-color: #eeeeee;
+}
+
+.timerLabel.disabled {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.timerLabel::before {
+  content: "";
+  height: 4rem;
+  width: 4rem;
+  border-radius: 2rem;
+  margin: 20px 20px;
+  background-size: cover;
+}
+.timerLabel.filets::before {
+  background-image: url("./filets.png");
+  background-color: var(--filet-color);
+}
+.timerLabel.spicy::before {
+  background-image: url("./spicy.png");
+  background-color: var(--spicy-color);
+}
+.timerLabel.bfast::before {
+  background-image: url("./breakfast.png");
+  background-color: var(--bfast-color);
+}
+.timerLabel.nuggets::before {
+  background-image: url("./nuggets.png");
+  background-color: var(--nuggets-color);
+}
+.timerLabel.strips::before {
+  background-image: url("./strips.png");
+  background-color: var(--strips-color);
+}
+.timerLabel.spicyStrips::before {
+  background-image: url("./spicystrips.png");
+  background-color: var(--spicy-strips-color);
+}
+
+.timerLabel .timeDisplay {
+  display: flex;
+  position: absolute;
+  right: 0;
+  height: 98%;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px 0 50px;
+  border-top-left-radius: 2.5rem;
+  border-bottom-left-radius: 2.5rem;
+  font-size: 2.5rem;
+  color: #fff;
+  opacity: 0.9;
+  /* width: 175px; */
+}
+
+.timerLabel.monitor .timeDisplay {
+  background-color: orange;
+}
+
+.timerLabel.serve .timeDisplay {
+  color: #000;
+}
+
+.timerLabel.needTemp .timeDisplay {
+  background-color: var(--temp-color);
+}
+.timerLabel.expired .timeDisplay {
+  background-color: var(--expired-color);
+}
+
+.addTimerButton {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  background-color: var(--filet-color);
+  color: var(--bfast-color);
+  border: 0;
+  padding: 20px 40px 5px;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.addTimerButton:focus {
+  outline: none;
+}
+
+.addTimerButton:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+:roots {
+  --blue: #0073dd;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dd0031;
+  --orange: #fd7e14;
+  --yellow: #ffb549;
+  --green: #249e6b;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #868686;
+  --gray-dark: #343a40;
+  --primary: #333;
+  --secondary: #868686;
+  --success: #249e6b;
+  --info: #17a2b8;
+  --warning: #ffb549;
+  --danger: #dd0031;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --border: #868686;
+  --medium: #d9d9d9;
+  --cfa-navy: #004f71;
+  --breakpoint-xxs: 0;
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 544px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1700px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
