@@ -4,6 +4,10 @@ const dailyMissionList = document.querySelector("#dailyMissions .missionList");
 const weeklyMissionList = document.querySelector(
   "#weeklyMissions .missionList"
 );
+const periodMissionList = document.querySelector(
+  "#periodMissions .missionList"
+);
+
 const goalBEPEl = document.querySelector("#goalBP .bepText");
 const tabs = document.querySelectorAll(".tab");
 
@@ -51,6 +55,23 @@ const weeklyMissions = [
   ["Complete the Golden House Challenge", 675],
 ];
 
+const periodMissions = [
+  ["Make a total of 50 wishes", 1500],
+  ["Gain a total of 12 stars in the Spiral Abyss", 2250],
+  ["[Event] Reach 2,600 points in Bullseye Balloons: Tower Waltz", 1500],
+  ["[Event] Reach 3,000 points in Floral Freefall: Windrise", 1500],
+  [
+    "[Event] Reach 2,200 points in Ballads of Breeze: Fondest Strength on Pro Mode",
+    1500,
+  ],
+  [
+    "[Event] Complete all Peculiar Conqueror tasks in Peculiar Wonderland",
+    2250,
+  ],
+  ['[Event] Completing all challenges in "Contending Tides"', 1500],
+  ['[Event] Complete "Life Flows On (II)" and obtain Endora', 1200],
+];
+
 function bindInputWithinRange(e) {
   if (!e || !e.target || !e.target.min || !e.target.max) return;
   let max = e.target.max;
@@ -73,6 +94,18 @@ function initMissions() {
     missionEl.innerHTML = `<small>${mission[0]}</small>
       <div class="bepCounter"><div class="bepText">${mission[1]}</div></div>`;
     weeklyMissionList.append(missionEl);
+  });
+
+  initMissionList(periodMissionList, periodMissions);
+}
+
+function initMissionList(missionListElement, missionList) {
+  missionListElement.innerHTML = "";
+  missionList.forEach((mission) => {
+    let missionEl = document.createElement("li");
+    missionEl.innerHTML = `<small>${mission[0]}</small>
+      <div class="bepCounter"><div class="bepText">${mission[1]}</div></div>`;
+    missionListElement.append(missionEl);
   });
 }
 
