@@ -7,6 +7,8 @@
   --header-height: 5.5rem;
   --background-color: rgb(193, 165, 134);
   --foreground-color: rgb(235, 226, 216);
+  --foreground-color-dark: #ccb59b;
+  --hover-color: #2098d1;
 }
 
 * {
@@ -22,7 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   height: 100vh;
   overflow-x: hidden;
   margin: 0;
@@ -127,19 +129,46 @@ body {
 .missionTab {
   display: inline-block;
   position: relative;
-  background-color: var(--foreground-color);
+  background-color: var(--foreground-color-dark);
   border: 1px solid var(--background-color);
   padding: 5px 10px;
   margin: 0px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin: 0 -4px;
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -5px 10px 1px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
-.missionTab:hover {
-  border: 1px solid var(--primary-color);
+.missionTab:hover,
+.missionTab.active {
+  background-color: var(--foreground-color);
+  border: 1px solid var(--background-color);
   z-index: 10;
+}
+
+.missionTab:active {
+  transform: scale(0.98);
+}
+
+.missionTab:hover:before {
+  left: 0;
+  right: 0;
+}
+
+.missionTab:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 51%;
+  right: 51%;
+  bottom: 0;
+  /* background: #2098d1; */
+  background: var(--secondary-color);
+  height: 2px;
+  transition-property: left, right;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
 }
 
 .missionTab.active {
