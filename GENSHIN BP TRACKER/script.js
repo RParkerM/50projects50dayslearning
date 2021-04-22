@@ -7,9 +7,11 @@ const weeklyMissionList = document.querySelector(
 const periodMissionList = document.querySelector(
   "#periodMissions .missionList"
 );
+const missionLists = document.querySelectorAll(".missionList");
 
 const goalBEPEl = document.querySelector("#goalBP .bepText");
-const tabs = document.querySelectorAll(".tab");
+const tabsContent = document.querySelectorAll(".tab");
+const tabs = document.querySelectorAll(".missionTab");
 
 curBEPEl.addEventListener("change", bindInputWithinRange);
 curLvlEl.addEventListener("change", bindInputWithinRange);
@@ -18,9 +20,27 @@ curLvlEl.addEventListener("change", updateGoalBep);
 
 console.log(tabs);
 
-tabs.forEach((tab) =>
-  tab.addEventListener("click", () => tab.classList.toggle("active"))
-);
+tabs.forEach((tab) => tab.addEventListener("click", (e) => selectTab(e)));
+
+function selectTab(e) {
+  tabs.forEach((tab) => tab.classList.remove("active"));
+  e.target.classList.add("active");
+  updateMissionListVisibility(e.target.id);
+}
+
+function updateMissionListVisibility(tab) {
+  console.log(tab);
+  missionLists.forEach((mission) =>
+    mission.parentElement.classList.remove("active")
+  );
+  if (tab == "dailyMissionTab")
+    dailyMissionList.parentElement.classList.add("active");
+  else if (tab == "weeklyMissionTab")
+    weeklyMissionList.parentElement.classList.add("active");
+  else if (tab == "periodMissionTab")
+    periodMissionList.parentElement.classList.add("active");
+  console.log(missionLists);
+}
 
 function updateGoalBep() {
   let curLvl = curLvlEl.value;
