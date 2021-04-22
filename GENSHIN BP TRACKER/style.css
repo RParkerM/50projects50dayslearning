@@ -148,7 +148,7 @@ body {
   border: 1px solid var(--background-color);
   border-bottom: none;
 
-  z-index: 5;
+  /* z-index: 5; */
 }
 
 .missionTab:last-child {
