@@ -1,3 +1,18 @@
+// TODO: add in ability to see how many times we can complete it and the total amount of BP generated
+
+// Reminder - BP resets at 4:00 am
+// US -5 GMT
+// EU +1 GMT
+// AS +8 GMT
+
+const endTimeByTZ = {
+  US: "2021-04-26T03:59:59.000-05:00",
+  EU: "2021-04-26T03:59:59.000+01:00",
+  AS: "2021-04-26T03:59:59.000+08:00",
+};
+
+const endTime = new Date(endTimeByTZ["US"]);
+
 const curBEPEl = document.getElementById("curBp");
 const curLvlEl = document.getElementById("curLvl");
 const dailyMissionList = document.querySelector("#dailyMissions .missionList");
@@ -12,13 +27,14 @@ const missionLists = document.querySelectorAll(".missionList");
 const goalBEPEl = document.querySelector("#goalBP .bepText");
 const tabsContent = document.querySelectorAll(".tab");
 const tabs = document.querySelectorAll(".missionTab");
+const timeRemainingEl = document.getElementById("timeLeftContainer");
+
+let remainingTime = endTime.getTime() - Date.now();
 
 curBEPEl.addEventListener("change", bindInputWithinRange);
 curLvlEl.addEventListener("change", bindInputWithinRange);
 curBEPEl.addEventListener("change", updateGoalBep);
 curLvlEl.addEventListener("change", updateGoalBep);
-
-console.log(tabs);
 
 tabs.forEach((tab) => tab.addEventListener("click", (e) => selectTab(e)));
 
@@ -100,7 +116,10 @@ function bindInputWithinRange(e) {
 }
 
 function initMissions() {
-  dailyMissionList.innerHTML = "";
+  dailyMissionList.innerHTML = `Times left = ${chancesLeft(
+    remainingTime,
+    "daily"
+  )}`;
   dailyMissions.forEach((mission) => {
     let missionEl = document.createElement("li");
     missionEl.innerHTML = `<small>${mission[0]}</small>
@@ -108,7 +127,10 @@ function initMissions() {
     dailyMissionList.append(missionEl);
   });
 
-  weeklyMissionList.innerHTML = "";
+  weeklyMissionList.innerHTML = `Times left = ${chancesLeft(
+    remainingTime,
+    "weekly"
+  )}`;
   weeklyMissions.forEach((mission) => {
     let missionEl = document.createElement("li");
     missionEl.innerHTML = `<small>${mission[0]}</small>
@@ -120,7 +142,10 @@ function initMissions() {
 }
 
 function initMissionList(missionListElement, missionList) {
-  missionListElement.innerHTML = "";
+  missionListElement.innerHTML = `Times left = ${chancesLeft(
+    remainingTime,
+    "period"
+  )}`;
   missionList.forEach((mission) => {
     let missionEl = document.createElement("li");
     missionEl.innerHTML = `<small>${mission[0]}</small>
@@ -129,4 +154,42 @@ function initMissionList(missionListElement, missionList) {
   });
 }
 
+function printTimeSeconds(myTime) {
+  let msToSecond = 1000;
+  let msToMinute = 60 * msToSecond;
+  let msToHour = 60 * msToMinute;
+  let msToDay = 24 * msToHour;
+
+  let days = Math.floor(myTime / msToDay);
+  let hours = Math.floor((myTime % msToDay) / msToHour);
+  let minutes = Math.floor((myTime % msToHour) / msToMinute);
+  let seconds = Math.floor((myTime % msToMinute) / msToSecond);
+  return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
 initMissions();
+
+setInterval(() => {
+  // console.log(printTimeSeconds(endTime.getTime() - Date.now()));
+  remainingTime = endTime.getTime() - Date.now();
+  updateTimeLeft();
+}, 1000);
+
+function updateTimeLeft() {
+  timeRemainingEl.innerHTML = `Current period ends in ${printTimeSeconds(
+    remainingTime
+  )}`;
+}
+
+function chancesLeft(time, missionType) {
+  if (time < 0) return 0;
+  if (missionType == "period") return 1;
+  let msInDays = 1000 * 60 * 60 * 24;
+  if (missionType == "daily") return Math.ceil(time / msInDays);
+  let msInWeeks = msInDays * 7;
+  if (missionType == "weekly") return Math.ceil(time / msInWeeks);
+  return undefined;
+}
+
+// NEXT ACTION IS TO SHOW HOW MANY TIMES LEFT ON THE BUTTON
+// THEN SHOW BASE BEP AND TOTAL BEP = BASE * TIMES
