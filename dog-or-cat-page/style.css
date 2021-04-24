@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+:root {
+  --hover-width: 75%;
+  --other-width: 25%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  text-align: center;
+}
+
+.heading {
+  height: 25vh;
+  overflow: hidden;
+}
+
+.main {
+  height: 70vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.footer {
+  height: 5vh;
+}
+
+.split {
+  position: absolute;
+  transition: width 0.6s ease-in, color 0.6s ease-in;
+  max-height: 70vh;
+  height: 100%;
+  width: 50%;
+  color: transparent;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 30px;
+}
+
+.split h3 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 4rem;
+  color: #fff;
+}
+
+.split p {
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.hover-left .left {
+  width: var(--hover-width);
+  color: #fff;
+}
+.hover-left .right {
+  width: var(--other-width);
+}
+.hover-right .left {
+  width: var(--other-width);
+}
+.hover-right .right {
+  width: var(--hover-width);
+  color: #fff;
+}
+
+.left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  z-index: -1;
+  width: 200%;
+  height: 100%;
+  background: url("./pexels-chevanon-photography-1108099.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 0;
+  transform: translateX(-25%);
+}
+.right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  z-index: -1;
+  width: 200%;
+  height: 100%;
+  background: url("./pexels-cats-coming-1543793.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  right: 0;
+  transform: translateX(0%);
+}
